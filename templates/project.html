@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Fatal Error Games | Project{% endblock %}
+
+{% block languages %}
+    {% include 'languages.html' with urlname='project' %}
+{% endblock %}
+
+{% block menu %}
+    <a href="{% url 'news' lang %}" class="menu_link">
+        {% if lang == 'ru' %}
+            Новости
+        {% else %}
+            News
+        {% endif %}
+    </a>
+    <span class="menu_link active_link">
+        {% if lang == 'ru' %}
+            Проект
+        {% else %}
+            Project
+        {% endif %}
+    </span>
+    {% for game in games %}
+        <a class="menu_link" href="{% url 'game' lang game.pk %}">{{ game.title }}</a>
+    {% endfor %}
+    <a class="menu_link" href="{% url 'cooperation' lang %}">
+        {% if lang == 'ru' %}
+            Сотрудничество
+        {% else %}
+            Cooperation
+        {% endif %}
+    </a>
+{% endblock %}
+
+{% block content %}
+    <div class="persons">
+        <div class="wrapper">
+            {% for person in persons %}
+                {% include 'person.html' %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}
+

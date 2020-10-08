@@ -1,0 +1,15 @@
+{% if lang == 'ru' %}
+    <span class="language active_language">ru</span>
+    {% if pk %}
+        <a href="{% url urlname 'en' pk %}" class="language">en</a>
+    {% else %}
+        <a href="{% url urlname 'en' %}" class="language">en</a>
+    {% endif %}
+{% else %}
+    {% if pk %}
+        <a href="{% url urlname 'ru' pk %}" class="language">ru</a>
+    {% else %}
+        <a href="{% url urlname 'ru' %}" class="language">ru</a>
+    {% endif %}
+    <span class="language active_language">en</span>
+{% endif %}

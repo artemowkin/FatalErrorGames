@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Fatal Error Games{% endblock %}
+
+{% block languages %}
+    {% include 'languages.html' with urlname='news' %}
+{% endblock %}
+
+{% block menu %}
+    <span class="menu_link active_link">
+        {% if lang == 'ru' %}
+            Новости
+        {% else %}
+            News
+        {% endif %}
+    </span>
+    <a class="menu_link" href="{% url 'project' lang %}">
+        {% if lang == 'ru' %}
+            Проект
+        {% else %}
+            Project
+        {% endif %}
+    </a>
+    {% for game in games %}
+        <a class="menu_link" href="{% url 'game' lang game.pk %}">{{ game.title }}</a>
+    {% endfor %}
+    <a class="menu_link" href="{% url 'cooperation' lang %}">
+        {% if lang == 'ru' %}
+            Сотрудничество
+        {% else %}
+            Cooperation
+        {% endif %}
+    </a>
+{% endblock %}
+
+{% block content %}
+    <div class="twitter">
+        <a class="twitter-timeline" href="https://twitter.com/FatalErrorDiary?ref_src=twsrc%5Etfw" data-theme="dark">Tweets by FatalErrorDiary</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+{% endblock %}

@@ -1,0 +1,521 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #292F33;
+    color: white;
+}
+
+* {
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: "Roboto Regular";
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+button:focus,
+button:active {
+    outline: none;
+}
+
+.wrapper {
+    width: 100%;
+    max-width: 1000px;
+    height: inherit;
+    margin: 0 auto;
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.page_about {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    margin-top: 4rem;
+    padding: 0 10px;
+}
+
+.page_about h1 {
+    color: #2b7bb9;
+    font-size: 2.45rem;
+}
+
+
+/***************
+ *             *
+ *    Fonts    *
+ *             *
+ ***************/
+@font-face {
+    font-family: "Roboto Regular";
+    src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+
+/****************
+ *              *
+ *    Header    *
+ *              *
+ ****************/
+header {
+    width: 100%;
+    height: 100px;
+    background-color: rgba(25,30,35,.61);
+}
+
+header::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: #2b7bb9;
+}
+
+header .wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logo img {
+    width: 60px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo_text {
+    margin-left: .5rem;
+}
+
+.logo_text h1 {
+    font-size: 1.5rem;
+    color: #2b7bb9;
+    margin: 0;
+}
+
+.logo_text p {
+    color: white;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.languages {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    min-width: max-content;
+}
+
+.language {
+    display: block;
+    padding: 1rem;
+    color: #2b7bb9;
+}
+
+.active_language {
+    color: white;
+    background: #2b7bb9;
+}
+
+a.language {
+    transition: background ease-in-out .25s, color ease-in-out .25s;
+}
+
+a.language:hover {
+    color: white;
+    background: #2b7bb9;
+}
+
+
+/**************
+ *            *
+ *    Menu    *
+ *            *
+ **************/
+.menu {
+    width: 100%;
+    background: white;
+    margin-top: 2px;
+    background-color: #292F33;
+}
+
+.menu_shower {
+    display: none;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    background: #2b7bb9;
+    color: white;
+    border: 0;
+    transition: background ease-in-out .25s, color ease-in-out .25s;
+}
+
+.menu .wrapper {
+    flex-direction: row;
+}
+
+.menu_link {
+    padding: 1rem 1.5rem;
+    background: #292F33;
+    color: white;
+    transition: background ease-in-out .25s, color ease-in-out .25s;
+}
+
+a.menu_link:hover {
+    background: #2b7bb9;
+    color: white;
+}
+
+.active_link {
+    background: #2b7bb9;
+    color: white;
+}
+
+
+/**************
+ *            *
+ *    Game    *
+ *            *
+ **************/
+.game {
+    width: 100%;
+    margin: 4rem 0;
+}
+
+.game p, .game li {
+    font-size: 1rem;
+}
+
+.game li {
+    margin-bottom: 1rem;
+}
+
+.game h2, .game h1 {
+    font-size: 1.75rem;
+    color: #2b7bb9;
+}
+
+.game .wrapper {
+    max-width: 1000px;
+    justify-content: flex-start;
+}
+
+.game_preview {
+    position: relative;
+    width: 100%;
+    height: 225px;
+    padding: 3rem;
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+}
+
+.game_preview img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.game_title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    z-index: 1;
+}
+
+.game_short_description {
+    width: 100%;
+    padding: 0 2rem;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+.owl-nav {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.owl-dots {
+    display: none;
+}
+
+.owl-stage-outer {
+    z-index: 100;
+}
+
+.owl-nav button {
+    width: 10%;
+    height: 100%;
+    z-index: 101;
+}
+
+.owl-nav span {
+    font-size: 5rem;
+    color: #2b7bb9;
+}
+
+.owl-carousel img, .owl-carousel iframe {
+    display: block;
+    width: 100%;
+    padding: 0 10%;
+    margin: 0 auto;
+}
+
+.owl-stage {
+    display: flex;
+    align-items: center;
+}
+
+.owl-carousel iframe {
+    height: 450px;
+}
+
+.game_description {
+    margin-top: 2rem;
+    padding: 0 2rem;
+    width: 100%;
+}
+
+
+/*****************
+ *               *
+ *    Persons    *
+ *               *
+ *****************/
+.persons {
+    width: 100%;
+    margin: 4rem 0;
+}
+
+.persons .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 3rem;
+}
+
+.person {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.person small {
+    font-size: .85rem;
+}
+
+.person_avatar_wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.person_avatar {
+    width: 100%;
+}
+
+.person h3 {
+    color: #2b7bb9;
+    font-size: 1.25rem;
+    margin: 0;
+    margin-top: 1rem;
+}
+
+.person small {
+    margin-top: .75rem;
+}
+
+
+/*****************
+ *               *
+ *    Message    *
+ *               *
+ *****************/
+.message {
+    width: 100%;
+    margin-top: 4rem;
+}
+
+.message .wrapper {
+    align-items: flex-start;
+}
+
+.message h1 {
+    font-size: 3rem;
+    color: #2b7bb9;
+    margin-bottom: 1rem;
+}
+
+
+/**************
+ *            *
+ *    News    *
+ *            *
+ **************/
+.twitter {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 4rem;
+}
+
+.twitter .timeline-Widget {
+    background-color: #222226;
+}
+
+
+/*********************
+ *                   *
+ *    Cooperation    *
+ *                   *
+ *********************/
+.links {
+    width: 100%;
+    margin-top: 4rem;
+    margin-bottom: 10px;
+}
+
+.links .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.links a {
+    padding: 2rem 0;
+    text-align: center;
+    transition: opacity ease-in-out .25s;
+}
+
+.links a:hover {
+    opacity: 0.8;
+}
+
+a.twitter_link {
+    background: #00acee;
+    color: white;
+}
+
+a.vk_link {
+    background: #597da3;
+    color: white;
+}
+
+a.facebook_link {
+    background: #3b5998;
+    color: white;
+}
+
+a.discord_link {
+    background: #7486d8;
+    color: white;
+}
+
+
+@media (max-width: 1000px) {
+    .page_about {
+        text-align: center;
+    }
+
+    .logo_text h1 {
+        font-size: 1.25rem;
+    }
+
+    .logo img {
+        width: 40px;
+    }
+
+    .menu .wrapper {
+        flex-direction: column;
+        display: none;
+        padding: 0;
+    }
+
+    .menu_shower {
+        display: block;
+    }
+
+    .menu_link {
+        width: 100%;
+        text-align: center;
+    }
+
+    .wrapper.enabled {
+        display: flex;
+    }
+
+    .twitter {
+        margin-top: 0;
+    }
+
+    .owl-carousel iframe {
+        height: 170px;
+    }
+
+    .game {
+        margin-bottom: 2rem;
+        margin-top: 0;
+    }
+
+    .game_preview {
+        margin-bottom: 0;
+    }
+
+    .game_description {
+        margin-top: 1rem;
+    }
+
+    .game_short_description {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .game .wrapper {
+        padding: 0;
+    }
+
+    .persons .wrapper {
+        grid-template-columns: 1fr;
+        padding: 0 2rem;
+    }
+
+    .links .wrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+
+    .message {
+        margin-top: 0;
+    }
+
+    .message h1, .message p {
+        text-align: center;
+        width: 100%;
+    }
+}
+

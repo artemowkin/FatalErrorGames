@@ -1,0 +1,26 @@
+<div class="person">
+    <div class="person_avatar_wrapper">
+        <img class="person_avatar" src="{{ person.avatar.url }}"></img>
+    </div>
+    <h3>
+        {% if lang == 'ru' and person.name_ru %}
+            {{ person.name_ru }}
+        {% else %}
+            {{ person.name }}
+        {% endif %}
+    </h3>
+    <small>
+        {% if lang == 'ru' and person.profession_ru %}
+            {{ person.profession_ru }}
+        {% else %}
+            {{ person.profession }}
+        {% endif %}
+    </small>
+    <p>
+        {% if lang == 'ru' and person.about_ru %}
+            {{ person.about_ru }}
+        {% else %}
+            {{ person.about }}
+        {% endif %}
+    </p>
+</div>

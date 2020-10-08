@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Fatal Error Games | Cooperation{% endblock %}
+
+{% block languages %}
+    {% include 'languages.html' with urlname='cooperation' %}
+{% endblock %}
+
+{% block menu %}
+    <a href="{% url 'news' lang %}" class="menu_link">
+        {% if lang == 'ru' %}
+            Новости
+        {% else %}
+            News
+        {% endif %}
+    </a>
+    <a class="menu_link" href="{% url 'project' lang %}">
+        {% if lang == 'ru' %}
+            Проект
+        {% else %}
+            Project
+        {% endif %}
+    </a>
+    {% for game in games %}
+        <a class="menu_link" href="{% url 'game' lang game.pk %}">{{ game.title }}</a>
+    {% endfor %}
+    <span class="menu_link active_link">
+        {% if lang == 'ru' %}
+            Сотрудничество
+        {% else %}
+            Cooperation
+        {% endif %}
+    </span>
+{% endblock %}
+
+{% block content %}
+    <div class="page_about">
+        <h1>
+            {% if lang == 'ru' %}
+                Сотрудничество
+            {% else %}
+                Cooperation
+            {% endif %}
+        </h1>
+        <p>
+            {% if lang == 'ru' %}
+                Некоторый текст
+            {% else %}
+                Some text
+            {% endif %}
+        </p>
+    </div>
+
+    <div class="links">
+        <div class="wrapper">
+            <a class="discord_link" href="#" target="blank">Discord</a>
+            <a class="twitter_link" href="https://twitter.com/FatalErrorDiary" target="blank">Twitter</a>
+            <a class="vk_link" href="https://vk.com/fatalerrorgames" target="blank">VK</a>
+            <a class="facebook_link" href="https://www.facebook.com/groups/1047182605456797/" target="blank">FaceBook</a>
+        </div>
+    </div>
+{% endblock %}
+
