@@ -12,6 +12,7 @@ pillow = "*"
 django-tinymce4-lite = "*"
 dj-database-url = "*"
 whitenoise = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"
