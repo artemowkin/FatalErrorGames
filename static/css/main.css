@@ -328,8 +328,8 @@ a.menu_link:hover {
 }
 
 .person_avatar_wrapper {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 100px;
     overflow: hidden;
     display: flex;
