@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'pages',
 ]
 
-if not DEBUG:
+if not DEBUG or ENVIRONMENT == 'heroku':
     INSTALLED_APPS.append('whitenoise')
 
 
@@ -68,7 +68,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-if not DEBUG:
+if not DEBUG or ENVIRONMENT == 'heroku':
     MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 
