@@ -46,6 +46,10 @@ button:active {
     font-size: 2.45rem;
 }
 
+.page_about a {
+    color: #2b7bb9;
+}
+
 
 /***************
  *             *

@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="shortcut icon" href="{% static 'images/feg_alpha.png' %}" type="image/png">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <title>Fatal Error Games | Not Found</title>
+    </head>
+    <body>
+        <div class="page_about">
+            <h1>404 Not Found</h1>
+            <p>This page is not found. You can return to <a href="{% url 'redirect' %}">home page</a></p>
+        </div>
+    </body>
+</html>
+
