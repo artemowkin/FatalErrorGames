@@ -7,4 +7,3 @@ from .models import Person
 class PersonAdmin(admin.ModelAdmin):
     list_display = ('name', 'profession', 'about')
     search_fields = ('name', 'profession', 'about')
-

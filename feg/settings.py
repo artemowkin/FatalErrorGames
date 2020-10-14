@@ -22,7 +22,7 @@ ALLOWED_HOSTS = ['*']
 ENVIRONMENT = get_env('DJANGO_ENVIRONMENT', 'development')
 
 if ENVIRONMENT in ('production', 'heroku'):
-    SECURE_BORWSER_XSS_FILTER = True
+    SECURE_BROWSER_XSS_FILTER = True
     X_FRAME_OPTIONS = 'DENY'
     SECURE_SSL_REDIRECT = True
     SECURE_HSTS_SECONDS = 31536000
@@ -184,6 +184,10 @@ LOGGING = {
             'handlers': ['file'],
             'level': 'INFO',
         },
+        'services.base': {
+            'handlers': ['file'],
+            'level': 'INFO',
+        }
     },
 }
 
@@ -200,4 +204,3 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = BASE_DIR / 'media'
-

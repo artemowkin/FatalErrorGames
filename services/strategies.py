@@ -13,9 +13,21 @@ logger = logging.getLogger(__name__)
 
 class BaseStrategy(ABC):
 
-    """Base strategy class"""
+    """Base strategy class
 
-    def __init__(self, model) -> None:
+    Examples
+    --------
+    Strategies that subclassed from this base class should be used
+    in services classes using composition:
+
+    >>> class SomeService:
+    ...     strategy_class = BaseStrategySubclass
+    ...     def __init__(self):
+    ...         self.strategy = self.strategy_class(self.model)
+
+    """
+
+    def __init__(self, model: Model) -> None:
         logger.info(
             f"{self.__class__.__name__}.__init__() "
             f"got a model: {model.__name__}"
@@ -24,6 +36,17 @@ class BaseStrategy(ABC):
 
 
 class SimpleGetStrategy(BaseStrategy):
+
+    """Simple strategy with only read functionality
+
+    Methods
+    -------
+    get_all()
+        Return all model entries
+    get_concrete(pk)
+        Return a concrete model entry
+
+    """
 
     def get_all(self) -> QuerySet:
         """Return all model entries"""
@@ -63,4 +86,3 @@ class SimpleGetStrategy(BaseStrategy):
             raise
 
         return entry
-

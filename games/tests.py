@@ -65,4 +65,3 @@ class TestGameService(TestCase):
     def test_get_concrete(self):
         entry = self.service.get_concrete(self.game.pk)
         self.assertEqual(entry, self.game)
-

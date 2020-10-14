@@ -13,10 +13,9 @@ class GameService(BaseGetService):
     strategy_class : SimpleGetStrategy
         Strategy class with get functionality
     model : Game
-        Game model servcice work with
+        Game model service work with
 
     """
 
     strategy_class = SimpleGetStrategy
     model = Game
-

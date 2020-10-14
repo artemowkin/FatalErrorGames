@@ -46,4 +46,3 @@ class PersonServiceTests(TestCase):
     def test_get_concrete(self):
         entry = self.service.get_concrete(self.person.pk)
         self.assertEqual(entry, self.person)
-

@@ -13,10 +13,9 @@ class PersonService(BaseGetService):
     strategy_class : SimpleGetStrategy
         Strategy class with get functionality
     model : Person
-        Person model servcice work with
+        Person model service work with
 
     """
 
     strategy_class = SimpleGetStrategy
     model = Person
-

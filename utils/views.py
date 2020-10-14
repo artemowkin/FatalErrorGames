@@ -1,15 +1,26 @@
 from django.views import View
 from django.shortcuts import render
 from django.http import Http404
-from django.core.exceptions import ImproperlyConfigured
 from django.conf import settings
+from django.http import HttpRequest, HttpResponse
 
 
 class DefaultView(View):
 
-    """View with errors exception"""
+    """View with exceptions handling
 
-    def dispatch(self, request, *args, **kwargs):
+    Methods
+    -------
+    dispatch(request, *args, **kwargs)
+        Handle request
+
+    """
+
+    def dispatch(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        """
+        Try to handle request. Render 404.html if 404 error
+        or error.html if something went wrong
+        """
         try:
             return super().dispatch(request, *args, **kwargs)
         except Http404:

@@ -41,4 +41,3 @@ def get_env(env_name: str, default: Any = None) -> Any[int, str]:
         env_value = int(env_value)
 
     return env_value
-

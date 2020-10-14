@@ -1,9 +1,7 @@
 from urllib.parse import urlparse, parse_qs
-from datetime import date
 
 from django.db import models
 from django.core.validators import URLValidator
-from django.urls import reverse
 from tinymce.models import HTMLField
 
 from utils.models import UUIDModel
@@ -82,4 +80,3 @@ class GameImage(models.Model):
         Game, on_delete=models.CASCADE, related_name='images',
         verbose_name='game'
     )
-

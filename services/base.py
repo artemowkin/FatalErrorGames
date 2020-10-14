@@ -1,8 +1,12 @@
 from __future__ import annotations
 from abc import ABC
+import logging
 
 from django.core.exceptions import ImproperlyConfigured
 from django.db.models import QuerySet, Model
+
+
+logger = logging.getLogger(__name__)
 
 
 class BaseGetService(ABC):
@@ -30,6 +34,10 @@ class BaseGetService(ABC):
 
     def __init__(self) -> None:
         if not all((self.strategy_class, self.model)):
+            logger.error(
+                f"{self.__class__.__name__} doesn't "
+                "have `strategy` attribute"
+            )
             raise ImproperlyConfigured("You need to set `strategy` attribute")
 
         self._strategy = self.strategy_class(self.model)
@@ -41,4 +49,3 @@ class BaseGetService(ABC):
     def get_all(self, *args, **kwargs) -> QuerySet:
         """Return all entries"""
         return self._strategy.get_all(*args, **kwargs)
-
