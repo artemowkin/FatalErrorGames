@@ -12,7 +12,7 @@ class DefaultView(View):
     def dispatch(self, request, *args, **kwargs):
         try:
             return super().dispatch(request, *args, **kwargs)
-        except (Http404, ImproperlyConfigured):
+        except Http404:
             raise
         except Exception:
             if settings.DEBUG:
