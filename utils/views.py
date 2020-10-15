@@ -7,7 +7,7 @@ from django.conf import settings
 from django.http import HttpRequest, HttpResponse
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('filelogger')
 
 
 class DefaultView(View):

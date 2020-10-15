@@ -6,7 +6,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.db.models import QuerySet, Model
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger('filelogger')
 
 
 class BaseGetService(ABC):

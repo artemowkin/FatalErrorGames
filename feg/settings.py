@@ -180,15 +180,7 @@ LOGGING = {
     },
 
     'loggers': {
-        'services.strategies': {
-            'handlers': ['file'],
-            'level': 'INFO',
-        },
-        'services.base': {
-            'handlers': ['file'],
-            'level': 'INFO',
-        },
-        'utils.views': {
+        'filelogger': {
             'handlers': ['file'],
             'level': 'INFO',
         },
