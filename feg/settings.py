@@ -187,7 +187,11 @@ LOGGING = {
         'services.base': {
             'handlers': ['file'],
             'level': 'INFO',
-        }
+        },
+        'utils.views': {
+            'handlers': ['file'],
+            'level': 'INFO',
+        },
     },
 }
 
