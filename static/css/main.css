@@ -207,9 +207,16 @@ a.menu_link:hover {
     margin-bottom: 1rem;
 }
 
+.game h1, .game h2, .game h3, .game h4, .game h5, .game h6, .game a {
+    color: #2b7bb9;
+}
+
 .game h2, .game h1 {
     font-size: 1.75rem;
-    color: #2b7bb9;
+}
+
+.game h3 {
+    font-size: 1.3rem;
 }
 
 .game .wrapper {
@@ -233,7 +240,7 @@ a.menu_link:hover {
     position: absolute;
     top: 0;
     left: 0;
-    min-width: 100%;
+    width: 1000px;
     min-height: 100%;
 }
 
@@ -327,9 +334,10 @@ a.menu_link:hover {
 .person {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
+    height: 100%;
 }
 
 .person small {

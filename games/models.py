@@ -31,7 +31,9 @@ class Game(UUIDModel):
 
     """
     title = models.CharField('game title', max_length=255)
-    preview = models.ImageField('game preview', upload_to='games')
+    preview = models.ImageField(
+        'game preview', upload_to='games', help_text='preferably 1000x225 px'
+    )
     short_description = models.CharField(
         'game short description in English', max_length=1000
     )
