@@ -24,7 +24,7 @@ class DefaultView(View):
     def dispatch(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         """
         Try to handle request. Render 404.html if 404 error
-        or error.html if something went wrong
+        or 500.html if something went wrong
         """
         try:
             return super().dispatch(request, *args, **kwargs)
@@ -32,9 +32,6 @@ class DefaultView(View):
             logger.warning(f"404 Not Found on {request.path}")
             raise
         except Exception:
-            if settings.DEBUG:
-                raise
-
             logger.exception(f"Problem with request on {request.path}")
-            return render(request, 'error.html', status=500)
+            raise
 
