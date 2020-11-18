@@ -13,6 +13,7 @@ django-tinymce4-lite = "*"
 dj-database-url = "*"
 whitenoise = "*"
 gunicorn = "*"
+dj-services = "*"
 
 [requires]
 python_version = "3.8"

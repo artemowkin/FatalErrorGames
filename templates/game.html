@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
 {% load static %}
 
 {% block head %}
@@ -9,39 +10,17 @@
 
 {% block title %}Fatal Error Games | {{ game.title }}{% endblock title %}
 
-{% block languages %}
-    {% include 'languages.html' with urlname='game' pk=game.pk %}
-{% endblock %}
-
 {% block menu %}
-    <a href="{% url 'news' lang %}" class="menu_link">
-        {% if lang == 'ru' %}
-            Новости
-        {% else %}
-            News
-        {% endif %}
-    </a>
-    <a class="menu_link" href="{% url 'project' lang %}">
-        {% if lang == 'ru' %}
-            Проект
-        {% else %}
-            Project
-        {% endif %}
-    </a>
+    <a href="{% url 'news' %}" class="menu_link">{% translate "News" %}</a>
+    <a class="menu_link" href="{% url 'project' %}">{% translate "Project" %}</a>
     {% for menu_game in games %}
         {% if menu_game == game %}
             <span class="menu_link active_link">{{ game.title }}</span>
         {% else %}
-            <a class="menu_link" href="{% url 'game' lang menu_game.pk %}">{{ menu_game.title }}</a>
+            <a class="menu_link" href="{% url 'game' menu_game.slug %}">{{ menu_game.title }}</a>
         {% endif %}
     {% endfor %}
-    <a class="menu_link" href="{% url 'cooperation' lang %}">
-        {% if lang == 'ru' %}
-            Сотрудничество
-        {% else %}
-            Cooperation
-        {% endif %}
-    </a>
+    <a class="menu_link" href="{% url 'cooperation' %}">{% translate "Cooperation" %}</a>
 {% endblock %}
 
 {% block content %}
@@ -53,11 +32,7 @@
             </div>
 
             <p class="game_short_description">
-                {% if lang == 'ru' and game.short_description_ru %}
-                    {{ game.short_description_ru }}
-                {% else %}
-                    {{ game.short_description }}
-                {% endif %}
+                {{ game.short_description }}
             </p>
 
             <div class="owl-carousel">
@@ -68,11 +43,7 @@
             </div>
 
             <div class="game_description">
-                {% if lang == 'ru' and game.description_ru %}
-                    {{ game.description_ru|safe }}
-                {% else %}
-                    {{ game.description|safe }}
-                {% endif %}
+                {{ game.description|safe }}
             </div>
         </div>
     </div>

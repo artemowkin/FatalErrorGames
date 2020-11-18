@@ -1,88 +1,87 @@
 from __future__ import annotations
-from abc import ABC
+from typing import Any
 from uuid import UUID
-import logging
 
-from django.db.models import QuerySet, Model
-from django.shortcuts import get_object_or_404
+from djservices.strategies import BaseCRUDStrategy
+from django.shortcuts import get_object_or_404, get_list_or_404
+from django.db.models import Model, QuerySet
 from django.http import Http404
+from django.conf import settings
 
 
-logger = logging.getLogger('filelogger')
+DEFAULT_LANG = settings.LANGUAGE_CODE
 
 
-class BaseStrategy(ABC):
+class BaseGETWithLangStrategy(BaseCRUDStrategy):
 
-    """Base strategy class
-
-    Examples
-    --------
-    Strategies that subclassed from this base class should be used
-    in services classes using composition:
-
-    >>> class SomeService:
-    ...     strategy_class = BaseStrategySubclass
-    ...     def __init__(self):
-    ...         self.strategy = self.strategy_class(self.model)
-
-    """
-
-    def __init__(self, model: Model) -> None:
-        logger.info(
-            f"{self.__class__.__name__}.__init__() "
-            f"got a model: {model.__name__}"
-        )
-        self._model = model
-
-
-class SimpleGetStrategy(BaseStrategy):
-
-    """Simple strategy with only read functionality
+    """Base CRUD strategy with only GET functionality using language code
 
     Methods
     -------
-    get_all()
-        Return all model entries
-    get_concrete(pk)
-        Return a concrete model entry
+    get_all(lang)
+        Returns all model entries where `language__code` is `lang`
+
+    get_concrete(pk, lang, default_lang)
+        Returns a concrete model entry
 
     """
 
-    def get_all(self) -> QuerySet:
-        """Return all model entries"""
-        logger.info(
-            f"Calling {self.__class__.__name__}.get_all()"
-        )
+    def get_all(self, lang: str,
+                default_lang: str = DEFAULT_LANG) -> QuerySet:
+        entries = self.model.objects.filter(language__code=lang)
+        if not entries:
+            entries = self.model.objects.filter(language__code=default_lang)
 
+        return entries
+
+    def get_concrete(self, pk, lang: str, default_lang: str = 'en') -> Model:
+        raise NotImplementedError
+
+    def create(self, *args, **kwargs):
+        raise ValueError(f"{self.__class__.__name__} can't create entries")
+
+    def change(self, *args, **kwargs):
+        raise ValueError(f"{self.__class__.__name__} can't change entries")
+
+    def delete(self, *args, **kwargs):
+        raise ValueError(f"{self.__class__.__name__} can't delete entries")
+
+
+class GETStrategy(BaseGETWithLangStrategy):
+
+    """
+    CRUD strategy with get functionality using pk field
+    in `get_concrete`
+    """
+
+    def get_concrete(self, pk: UUID, lang: str,
+                     default_lang: str = DEFAULT_LANG) -> Model:
         try:
-            return self._model.objects.all()
-        except Exception:
-            logger.exception(
-                f"Problem with getting all {self._model.__name__} entries "
-                f"in method {self.__class__.__name__}.get_all()"
-            )
-            raise
-
-    def get_concrete(self, pk: UUID) -> Model:
-        """Return a concrete entry with pk"""
-        logger.info(
-            f"Calling {self.__class__.__name__}.get_concrete() with "
-            f"pk == {pk}"
-        )
-
-        try:
-            entry = get_object_or_404(self._model, pk=pk)
+            entry = get_object_or_404(self.model, pk=pk, language__code=lang)
         except Http404:
-            logger.warning(
-                f"404 Not Found for model {self._model.__name__} "
-                f"and pk == {pk}"
+            entry = get_object_or_404(
+                self.model, pk=pk, language__code=default_lang
             )
-            raise
-        except Exception:
-            logger.exception(
-                f"Problem with getting a concrete entry of model "
-                f"{self._model.__name__} with pk == {pk}"
+
+        return entry
+
+
+class GETSlugStrategy(BaseGETWithLangStrategy):
+
+    """
+    CRUD strategy with get functionality using slug field
+    in `get_concrete`
+    """
+
+    def get_concrete(self, slug: str, lang: str,
+                     default_lang: str = DEFAULT_LANG) -> Model:
+        try:
+            entry = get_object_or_404(
+                self.model, slug=slug, language__code=lang
             )
-            raise
+        except Http404:
+            entry = get_object_or_404(
+                self.model, slug=slug, language__code=default_lang
+            )
 
         return entry

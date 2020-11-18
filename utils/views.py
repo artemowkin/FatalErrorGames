@@ -34,4 +34,3 @@ class DefaultView(View):
         except Exception:
             logger.exception(f"Problem with request on {request.path}")
             raise
-

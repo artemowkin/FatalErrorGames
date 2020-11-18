@@ -3,10 +3,6 @@ from django.urls import path, include, register_converter
 from django.conf import settings
 from django.conf.urls.static import static
 
-from utils.urls import LanguageConverter
-
-
-register_converter(LanguageConverter, 'language')
 
 urlpatterns = [
     # Django Admin
@@ -17,8 +13,9 @@ urlpatterns = [
 
     # Local
     path('', include('pages.urls')),
-    path('<language:lang>/project/', include('persons.urls')),
-    path('<language:lang>/games/', include('games.urls')),
+    path('langs/', include('langs.urls')),
+    path('project/', include('persons.urls')),
+    path('games/', include('games.urls')),
 ]
 
 if settings.DEBUG:

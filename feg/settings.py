@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'games',
     'persons',
     'pages',
+    'langs',
 ]
 
 if not DEBUG or ENVIRONMENT == 'heroku':
@@ -85,6 +86,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'games.context_processors.games_processor',
+                'langs.context_processors.languages_processor',
             ],
         },
     },
@@ -134,7 +137,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale'
+]
 
 TIME_ZONE = 'UTC'
 
@@ -146,6 +153,7 @@ USE_TZ = True
 
 
 # Logging
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -196,6 +204,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+if not DEBUG or ENVIRONMENT == 'heroku':
+    STATICFILES_STORAGE = (
+        'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    )
 
 MEDIA_URL = '/media/'
 

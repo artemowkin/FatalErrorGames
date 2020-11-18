@@ -1,10 +1,10 @@
-from services import BaseGetService
-from services.strategies import SimpleGetStrategy
+from djservices.base import BaseCRUDService
 
+from services import GETStrategy
 from .models import Person
 
 
-class PersonService(BaseGetService):
+class PersonService(BaseCRUDService):
 
     """Person service
 
@@ -17,5 +17,5 @@ class PersonService(BaseGetService):
 
     """
 
-    strategy_class = SimpleGetStrategy
+    strategy_class = GETStrategy
     model = Person

@@ -1,10 +1,10 @@
-from services import BaseGetService
-from services.strategies import SimpleGetStrategy
+from djservices.base import BaseCRUDService
 
+from services import GETSlugStrategy
 from .models import Game
 
 
-class GameService(BaseGetService):
+class GameService(BaseCRUDService):
 
     """Game service
 
@@ -17,5 +17,5 @@ class GameService(BaseGetService):
 
     """
 
-    strategy_class = SimpleGetStrategy
+    strategy_class = GETSlugStrategy
     model = Game

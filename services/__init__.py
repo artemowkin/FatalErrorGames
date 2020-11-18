@@ -1,4 +1,3 @@
-from .base import BaseGetService
+from .strategies import GETStrategy, GETSlugStrategy
 
-__all__ = ['BaseGetService']
-
+__all__ = ['GETStrategy', 'GETSlugStrategy']

@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 
 from utils.views import DefaultView
-from games.services import GameService
 from .services import PersonService
 
 
@@ -21,17 +20,10 @@ class ProjectView(DefaultView):
 
     """
 
-    game_service = GameService()
     person_service = PersonService()
     template_name = 'project.html'
 
-    def get(self, request: HttpRequest, lang: str) -> HttpResponse:
-        """Render page with persons, games list and language code"""
-        games = self.game_service.get_all()
-        persons = self.person_service.get_all()
-        return render(
-            request, self.template_name, {
-                'games': games, 'persons': persons, 'lang': lang
-            }
-        )
-
+    def get(self, request: HttpRequest) -> HttpResponse:
+        """Render page with persons and games list"""
+        persons = self.person_service.get_all(request.LANGUAGE_CODE)
+        return render(request, self.template_name, {'persons': persons})

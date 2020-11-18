@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -17,38 +18,49 @@
                     <img src="{% static 'images/feg_alpha.png' %}">
                     <div class="logo_text">
                         <h1>Fatal Error Games</h1>
-                        <p>
-                            {% if lang == 'ru' %}
-                                Игровая студия
-                            {% else %}
-                                Game study
-                            {% endif %}
-                        </p>
+                        <p>{% translate "Game study" %}</p>
                     </div>
                 </div>
                 <div class="languages">
-                    {% block languages %}{% endblock %}
+                    {% get_current_language as current_lang %}
+                    {% csrf_token %}
+
+                    {% for lang in languages %}
+                        {% if lang.code == current_lang|truncatechars:2 %}
+                            <span class="language active_language">{{ lang.code }}</span>
+                        {% else %}
+                            <a href="#" class="language">{{ lang.code }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                    <script>
+                        let langButtons = document.querySelectorAll('a.language');
+                        let csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].getAttribute('value');
+                        let url = '/langs/setlang/';
+
+                        for (let button of langButtons) {
+                            let lang = button.innerHTML;
+                            button.onclick = function() {
+                                fetch(url, {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json;charset=utf-8',
+                                        'X-CSRFToken': csrfToken,
+                                    },
+                                    body: JSON.stringify({'language': lang}),
+                                }).then(response => document.location.reload())
+                            };
+                        };
+                    </script>
                 </div>
             </div>
         </header>
 
         <!-- Menu -->
         <div class="menu">
-            <button class="menu_shower">
-                {% if lang == 'ru' %}
-                    Меню
-                {% else %}
-                    Menu
-                {% endif %}
-            </button>
+            <button class="menu_shower">{% translate "Menu" %}</button>
             <div id="menu_list" class="wrapper">
                 {% block menu %}
-                    <span class="menu_link active_link">Новости</span>
-                    <a class="menu_link" href="project.html">Проект</a>
-                    <a class="menu_link" href="cruel_galaxy_discordia.html">Cruel Galaxy: Discordia</a>
-                    <a class="menu_link" href="divine_business_fts.html">Divine Business: fts</a>
-                    <a class="menu_link" href="ladder_clicker.html">Ladder Clicker</a>
-                    <a class="menu_link" href="cooperation.html">Сотрудничество</a>
                 {% endblock %}
             </div>
         </div>

@@ -1,36 +1,19 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}Fatal Error Games | Cooperation{% endblock %}
 
-{% block languages %}
-    {% include 'languages.html' with urlname='cooperation' %}
-{% endblock %}
-
 {% block menu %}
-    <a href="{% url 'news' lang %}" class="menu_link">
-        {% if lang == 'ru' %}
-            Новости
+    <a href="{% url 'news' %}" class="menu_link">{% translate "News" %}</a>
+    <a class="menu_link" href="{% url 'project' %}">{% translate "Project" %}</a>
+    {% for menu_game in games %}
+        {% if menu_game == game %}
+            <span class="menu_link active_link">{{ game.title }}</span>
         {% else %}
-            News
+            <a class="menu_link" href="{% url 'game' menu_game.slug %}">{{ menu_game.title }}</a>
         {% endif %}
-    </a>
-    <a class="menu_link" href="{% url 'project' lang %}">
-        {% if lang == 'ru' %}
-            Проект
-        {% else %}
-            Project
-        {% endif %}
-    </a>
-    {% for game in games %}
-        <a class="menu_link" href="{% url 'game' lang game.pk %}">{{ game.title }}</a>
     {% endfor %}
-    <span class="menu_link active_link">
-        {% if lang == 'ru' %}
-            Сотрудничество
-        {% else %}
-            Cooperation
-        {% endif %}
-    </span>
+    <span class="menu_link active_link">{% translate "Cooperation" %}</span>
 {% endblock %}
 
 {% block content %}

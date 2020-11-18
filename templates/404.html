@@ -1,18 +1,26 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <link rel="shortcut icon" href="{% static 'images/feg_alpha.png' %}" type="image/png">
-        <link rel="stylesheet" href="{% static 'css/main.css' %}">
-        <title>Fatal Error Games | Not Found</title>
-    </head>
-    <body>
-        <div class="page_about">
-            <h1>404 Not Found</h1>
-            <p>This page is not found. You can return to <a href="{% url 'redirect' %}">home page</a></p>
-        </div>
-    </body>
-</html>
+{% extends 'base.html' %}
+{% load i18n %}
 
+{% block title %}Fatal Error Games | Not Found{% endblock %}
+
+{% block menu %}
+    <a href="{% url 'news' %}" class="menu_link">{% translate "News" %}</a>
+    <a class="menu_link" href="{% url 'project' %}">{% translate "Project" %}</a>
+    {% for menu_game in games %}
+        {% if menu_game == game %}
+            <span class="menu_link active_link">{{ game.title }}</span>
+        {% else %}
+            <a class="menu_link" href="{% url 'game' menu_game.slug %}">{{ menu_game.title }}</a>
+        {% endif %}
+    {% endfor %}
+    <a href="{% url 'cooperation' %}" class="menu_link">{% translate "Cooperation" %}</a>
+{% endblock %}
+
+{% block content %}
+    <div class="page_about">
+        <h1>404 Not Found</h1>
+        <p>
+            {% translate "This page is not found" %}
+        </p>
+    </div>
+{% endblock %}

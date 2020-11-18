@@ -1,0 +1,137 @@
+# Fatal Error Games site
+# Copyright (C) 2020
+# This file is distributed under the same license as the Fatal Error Games
+# site
+# artemowkin <artyom.groshev2017@gmail.com>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-18 09:04+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: games/forms.py:10
+msgid "Game short description"
+msgstr "Краткое описание игры"
+
+#: games/models.py:36
+msgid "game title"
+msgstr "заголовок игры"
+
+#: games/models.py:37
+msgid "game slug"
+msgstr "слаг игры"
+
+#: games/models.py:39
+msgid "game preview"
+msgstr "preview игры"
+
+#: games/models.py:40
+msgid "preferably 1000x225 px"
+msgstr "предпочтительно 1000x225 px"
+
+#: games/models.py:43
+msgid "game short description"
+msgstr "краткое описание игры"
+
+#: games/models.py:45
+msgid "game description"
+msgstr "описание игры"
+
+#: games/models.py:47
+msgid "game video link on youtube"
+msgstr "ссылка на видео об игре на youtube"
+
+#: games/models.py:55 langs/models.py:10 persons/models.py:36
+msgid "language"
+msgstr "язык"
+
+#: games/models.py:60 games/models.py:92
+msgid "game"
+msgstr "игра"
+
+#: games/models.py:61
+msgid "games"
+msgstr "игры"
+
+#: games/models.py:89 games/models.py:96
+msgid "game image"
+msgstr "картинка игры"
+
+#: games/models.py:97
+msgid "game images"
+msgstr "картинки игры"
+
+#: langs/models.py:7
+msgid "language code"
+msgstr "код языка"
+
+#: langs/models.py:11
+msgid "languages"
+msgstr "языки"
+
+#: persons/models.py:27
+msgid "person avatar"
+msgstr "аватар"
+
+#: persons/models.py:28
+msgid "person name"
+msgstr "имя"
+
+#: persons/models.py:30
+msgid "person profession"
+msgstr "профессия"
+
+#: persons/models.py:33
+msgid "information about person"
+msgstr "Информация о человеке"
+
+#: persons/models.py:40
+msgid "person"
+msgstr "человек"
+
+#: persons/models.py:41
+msgid "persons"
+msgstr "люди"
+
+#: templates/404.html:7 templates/500.html:7 templates/cooperation.html:7
+#: templates/game.html:14 templates/news.html:11 templates/project.html:11
+msgid "News"
+msgstr "Новости"
+
+#: templates/404.html:8 templates/500.html:8 templates/cooperation.html:8
+#: templates/game.html:15 templates/news.html:12 templates/project.html:12
+msgid "Project"
+msgstr "Проект"
+
+#: templates/404.html:16 templates/500.html:16 templates/cooperation.html:16
+#: templates/game.html:23 templates/news.html:20 templates/project.html:20
+msgid "Cooperation"
+msgstr "Сотрудничество"
+
+#: templates/404.html:23
+msgid "This page is not found"
+msgstr "Эта страница недоступна"
+
+#: templates/500.html:23
+msgid "Something went wrong"
+msgstr "Что-то пошло не так"
+
+#: templates/base.html:21
+msgid "Game study"
+msgstr "Игровая студия"
+
+#: templates/base.html:61
+msgid "Menu"
+msgstr "Меню"

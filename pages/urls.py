@@ -1,16 +1,16 @@
-from django.urls import path, register_converter
+from django.urls import path
+from django.views.generic import TemplateView, RedirectView
 
-from .views import NewsView, CooperationView, RedirectView
-from utils.urls import LanguageConverter
-
-
-register_converter(LanguageConverter, 'language')
 
 urlpatterns = [
-    path('', RedirectView.as_view(), name='redirect'),
-    path('<language:lang>/news/', NewsView.as_view(), name='news'),
+    path('', RedirectView.as_view(url='news/'), name='redirect'),
     path(
-        '<language:lang>/cooperation/',
-        CooperationView.as_view(), name='cooperation'
+        'news/', TemplateView.as_view(template_name='news.html'),
+        name='news'
+    ),
+    path(
+        'cooperation/',
+        TemplateView.as_view(template_name='cooperation.html'),
+        name='cooperation'
     ),
 ]

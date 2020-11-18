@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}Fatal Error Games{% endblock %}
 
@@ -7,30 +8,16 @@
 {% endblock %}
 
 {% block menu %}
-    <span class="menu_link active_link">
-        {% if lang == 'ru' %}
-            Новости
+    <span class="menu_link active_link">{% translate "News" %}</span>
+    <a class="menu_link" href="{% url 'project' %}">{% translate "Project" %}</a>
+    {% for menu_game in games %}
+        {% if menu_game == game %}
+            <span class="menu_link active_link">{{ game.title }}</span>
         {% else %}
-            News
+            <a class="menu_link" href="{% url 'game' menu_game.slug %}">{{ menu_game.title }}</a>
         {% endif %}
-    </span>
-    <a class="menu_link" href="{% url 'project' lang %}">
-        {% if lang == 'ru' %}
-            Проект
-        {% else %}
-            Project
-        {% endif %}
-    </a>
-    {% for game in games %}
-        <a class="menu_link" href="{% url 'game' lang game.pk %}">{{ game.title }}</a>
     {% endfor %}
-    <a class="menu_link" href="{% url 'cooperation' lang %}">
-        {% if lang == 'ru' %}
-            Сотрудничество
-        {% else %}
-            Cooperation
-        {% endif %}
-    </a>
+    <a class="menu_link" href="{% url 'cooperation' %}">{% translate "Cooperation" %}</a>
 {% endblock %}
 
 {% block content %}

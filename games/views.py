@@ -5,6 +5,7 @@ from django.http import HttpRequest, HttpResponse
 
 from utils.views import DefaultView
 from .services import GameService
+from langs.models import Language
 
 
 class GameView(DefaultView):
@@ -14,13 +15,9 @@ class GameView(DefaultView):
     game_service = GameService()
     template_name = 'game.html'
 
-    def get(self, request: HttpRequest, lang: str, pk: UUID) -> HttpResponse:
+    def get(self, request: HttpRequest, slug: str) -> HttpResponse:
         """
-        Render game page with games list, concrete game and language code
+        Render a concrete game page
         """
-        game = self.game_service.get_concrete(pk)
-        games = self.game_service.get_all()
-        return render(
-            request, self.template_name,
-            {'games': games, 'game': game, 'lang': lang}
-        )
+        game = self.game_service.get_concrete(slug, request.LANGUAGE_CODE)
+        return render(request, self.template_name, {'game': game})
