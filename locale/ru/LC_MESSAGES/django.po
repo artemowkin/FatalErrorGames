@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-18 09:04+0000\n"
+"POT-Creation-Date: 2020-11-19 02:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,10 +20,6 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-
-#: games/forms.py:10
-msgid "Game short description"
-msgstr "Краткое описание игры"
 
 #: games/models.py:36
 msgid "game title"
@@ -57,19 +53,19 @@ msgstr "ссылка на видео об игре на youtube"
 msgid "language"
 msgstr "язык"
 
-#: games/models.py:60 games/models.py:92
+#: games/models.py:65 games/models.py:100
 msgid "game"
 msgstr "игра"
 
-#: games/models.py:61
+#: games/models.py:66
 msgid "games"
 msgstr "игры"
 
-#: games/models.py:89 games/models.py:96
+#: games/models.py:97 games/models.py:104
 msgid "game image"
 msgstr "картинка игры"
 
-#: games/models.py:97
+#: games/models.py:105
 msgid "game images"
 msgstr "картинки игры"
 
@@ -135,3 +131,6 @@ msgstr "Игровая студия"
 #: templates/base.html:61
 msgid "Menu"
 msgstr "Меню"
+
+#~ msgid "Game short description"
+#~ msgstr "Краткое описание игры"
