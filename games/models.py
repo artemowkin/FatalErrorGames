@@ -56,6 +56,7 @@ class Game(UUIDModel):
     )
 
     class Meta:
+        unique_together = ('slug', 'language')
         ordering = ('pub_date', 'title')
         verbose_name = _('game')
         verbose_name_plural = _('games')

@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Language(models.Model):
-    code = models.CharField(_('language code'), max_length=2)
+    code = models.CharField(_('language code'), max_length=2, unique=True)
 
     class Meta:
         verbose_name = _('language')
