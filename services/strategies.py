@@ -19,22 +19,23 @@ class BaseGETWithLangStrategy(BaseCRUDStrategy):
     Methods
     -------
     get_all(lang)
-        Returns all model entries where `language__code` is `lang`
+        Returns all model entries where `language__code` is `lang`. If
+        entries with this lang doesn't exist and `lang` isn't
+        default, returns all entries with default language
 
-    get_concrete(pk, lang, default_lang)
-        Returns a concrete model entry
+    get_concrete(pk, lang)
+        Returns a concrete model entry.
 
     """
 
-    def get_all(self, lang: str,
-                default_lang: str = DEFAULT_LANG) -> QuerySet:
+    def get_all(self, lang: str = DEFAULT_LANG) -> QuerySet:
         entries = self.model.objects.filter(language__code=lang)
-        if not entries:
-            entries = self.model.objects.filter(language__code=default_lang)
+        if not entries and lang != DEFAULT_LANG:
+            entries = self.model.objects.filter(language__code=DEFAULT_LANG)
 
         return entries
 
-    def get_concrete(self, pk, lang: str, default_lang: str = 'en') -> Model:
+    def get_concrete(self, pk, lang: str = DEFAULT_LANG) -> Model:
         raise NotImplementedError
 
     def create(self, *args, **kwargs):
@@ -54,16 +55,16 @@ class GETStrategy(BaseGETWithLangStrategy):
     in `get_concrete`
     """
 
-    def get_concrete(self, pk: UUID, lang: str,
-                     default_lang: str = DEFAULT_LANG) -> Model:
+    def get_concrete(self, pk: UUID, lang: str = DEFAULT_LANG) -> Model:
         try:
-            entry = get_object_or_404(self.model, pk=pk, language__code=lang)
+            return get_object_or_404(self.model, pk=pk, language__code=lang)
         except Http404:
-            entry = get_object_or_404(
-                self.model, pk=pk, language__code=default_lang
-            )
+            if lang != DEFAULT_LANG:
+                return get_object_or_404(
+                    self.model, pk=pk, language__code=DEFAULT_LANG
+                )
 
-        return entry
+            raise
 
 
 class GETSlugStrategy(BaseGETWithLangStrategy):
@@ -73,15 +74,15 @@ class GETSlugStrategy(BaseGETWithLangStrategy):
     in `get_concrete`
     """
 
-    def get_concrete(self, slug: str, lang: str,
-                     default_lang: str = DEFAULT_LANG) -> Model:
+    def get_concrete(self, slug: str, lang: str = DEFAULT_LANG) -> Model:
         try:
-            entry = get_object_or_404(
+            return get_object_or_404(
                 self.model, slug=slug, language__code=lang
             )
         except Http404:
-            entry = get_object_or_404(
-                self.model, slug=slug, language__code=default_lang
-            )
+            if lang != DEFAULT_LANG:
+                return get_object_or_404(
+                    self.model, slug=slug, language__code=DEFAULT_LANG
+                )
 
-        return entry
+            raise

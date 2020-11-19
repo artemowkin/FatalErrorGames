@@ -56,7 +56,11 @@ class Game(UUIDModel):
     )
 
     class Meta:
-        unique_together = ('slug', 'language')
+        constraints = (
+            models.UniqueConstraint(
+                fields=['slug', 'language'], name='unique_games'
+            ),
+        )
         ordering = ('pub_date', 'title')
         verbose_name = _('game')
         verbose_name_plural = _('games')
@@ -70,10 +74,13 @@ class Game(UUIDModel):
     @property
     def video_widget_url(self) -> str:
         """Return URL for YouTube widget"""
-        video_url = urlparse(self.video)
-        queries = parse_qs(video_url.query)
-        uri = f"https://www.youtube.com/embed/{queries['v'][0]}"
-        return uri
+        if not hasattr(self, '_video_widget_url'):
+            video_url = urlparse(self.video)
+            queries = parse_qs(video_url.query)
+            url = f"https://www.youtube.com/embed/{queries['v'][0]}"
+            self._video_widget_url = url
+
+        return self._video_widget_url
 
 
 class GameImage(models.Model):
