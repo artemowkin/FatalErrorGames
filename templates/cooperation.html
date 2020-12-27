@@ -18,20 +18,8 @@
 
 {% block content %}
     <div class="page_about">
-        <h1>
-            {% if lang == 'ru' %}
-                Сотрудничество
-            {% else %}
-                Cooperation
-            {% endif %}
-        </h1>
-        <p>
-            {% if lang == 'ru' %}
-                Некоторый текст
-            {% else %}
-                Some text
-            {% endif %}
-        </p>
+        <h1>{% translate "Cooperation" %}</h1>
+        <p>{% translate "Some text" %}</p>
     </div>
 
     <div class="links">
@@ -43,4 +31,3 @@
         </div>
     </div>
 {% endblock %}
-

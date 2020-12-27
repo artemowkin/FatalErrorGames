@@ -4,7 +4,6 @@ from django.db import models
 
 
 class UUIDModel(models.Model):
-
     """Abstract model with uuid primary key field
 
     Attributes

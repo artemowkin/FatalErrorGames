@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.conf import settings
 
 from .models import Person
-from .services import PersonService
+import services.common as services_common
 from langs.models import Language
 
 
@@ -30,7 +30,7 @@ class PersonModelTests(TestCase):
         self.assertEqual(self.person.language, self.lang)
 
 
-class PersonServiceTests(TestCase):
+class PersonServicesTests(TestCase):
 
     def setUp(self):
         self.lang = Language.objects.create(code='en')
@@ -41,15 +41,14 @@ class PersonServiceTests(TestCase):
             about='description',
             language=self.lang,
         )
-        self.service = PersonService()
 
     def test_get_all(self):
-        all_persons = self.service.get_all()
+        all_persons = services_common.get_all_by_language(Person)
         self.assertEqual(len(all_persons), 1)
         self.assertEqual(all_persons[0], self.person)
 
     def test_get_all_ru(self):
-        all_persons = self.service.get_all('ru')
+        all_persons = services_common.get_all_by_language(Person, 'ru')
         self.assertEqual(len(all_persons), 1)
         self.assertEqual(all_persons[0], self.person)
 
@@ -62,16 +61,22 @@ class PersonServiceTests(TestCase):
             about='Описание',
             language=lang_ru,
         )
-        all_persons = self.service.get_all(lang_ru.code)
+        all_persons = services_common.get_all_by_language(
+            Person, lang_ru.code
+        )
         self.assertEqual(len(all_persons), 1)
         self.assertEqual(all_persons[0], person_ru)
 
     def test_get_concrete(self):
-        entry = self.service.get_concrete(self.person.pk)
+        entry = services_common.get_concrete_by_pk(
+            Person, self.person.pk
+        )
         self.assertEqual(entry, self.person)
 
     def test_get_concrete_ru(self):
-        entry = self.service.get_concrete(self.person.pk, 'ru')
+        entry = services_common.get_concrete_by_pk(
+            Person, self.person.pk, 'ru'
+        )
         self.assertEqual(entry, self.person)
 
     def test_get_concrete_ru_with_person_ru(self):
@@ -83,7 +88,9 @@ class PersonServiceTests(TestCase):
             about='Описание',
             language=lang_ru,
         )
-        entry = self.service.get_concrete(person_ru.pk, lang_ru.code)
+        entry = services_common.get_concrete_by_pk(
+            Person, person_ru.pk, lang_ru.code
+        )
         self.assertEqual(entry, person_ru)
 
 

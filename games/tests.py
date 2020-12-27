@@ -2,8 +2,8 @@ from django.test import TestCase
 from django.urls import reverse
 from django.conf import settings
 
+import services.common as services_common
 from .models import Game, GameImage
-from .services import GameService
 from langs.models import Language
 
 
@@ -46,7 +46,7 @@ class GameModelTests(TestCase):
         )
 
 
-class GameServiceTests(TestCase):
+class GameServicesTests(TestCase):
 
     def setUp(self):
         self.lang = Language.objects.create(code='en')
@@ -59,15 +59,14 @@ class GameServiceTests(TestCase):
             video="https://www.youtube.com/watch?v=test",
             language=self.lang,
         )
-        self.service = GameService()
 
-    def test_get_all(self):
-        all_games = self.service.get_all()
+    def test_get_all_by_language(self):
+        all_games = services_common.get_all_by_language(Game)
         self.assertEqual(len(all_games), 1)
         self.assertEqual(all_games[0], self.game)
 
-    def test_get_all_ru(self):
-        all_games = self.service.get_all('ru')
+    def test_get_all_by_language_ru(self):
+        all_games = services_common.get_all_by_language(Game, 'ru')
         self.assertEqual(len(all_games), 1)
         self.assertEqual(all_games[0], self.game)
 
@@ -82,18 +81,20 @@ class GameServiceTests(TestCase):
             video="https://www.youtube.com/watch?v=test",
             language=lang_ru
         )
-        all_games = self.service.get_all('ru')
+        all_games = services_common.get_all_by_language(Game, 'ru')
         self.assertEqual(len(all_games), 1)
         self.assertEqual(all_games[0], game_ru)
 
     def test_get_concrete(self):
-        entry = self.service.get_concrete(
-            self.game.slug, self.game.language.code
+        entry = services_common.get_concrete_by_slug(
+            Game, self.game.slug, self.game.language.code
         )
         self.assertEqual(entry, self.game)
 
     def test_get_concrete_ru(self):
-        entry = self.service.get_concrete(self.game.slug, 'ru')
+        entry = services_common.get_concrete_by_slug(
+            Game, self.game.slug, 'ru'
+        )
         self.assertEqual(entry, self.game)
 
     def test_get_concrete_ru_with_game_ru(self):
@@ -107,11 +108,13 @@ class GameServiceTests(TestCase):
             video="https://www.youtube.com/watch?v=test",
             language=lang_ru
         )
-        entry = self.service.get_concrete(game_ru.slug, lang_ru.code)
+        entry = services_common.get_concrete_by_slug(
+            Game, game_ru.slug, lang_ru.code
+        )
         self.assertEqual(entry, game_ru)
 
 
-class GameViewsTest(TestCase):
+class GameViewsTests(TestCase):
 
     def setUp(self):
         self.lang = Language.objects.create(code='en')

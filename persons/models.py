@@ -6,7 +6,6 @@ from langs.models import Language
 
 
 class Person(UUIDModel):
-
     """Person model
 
     Attributes

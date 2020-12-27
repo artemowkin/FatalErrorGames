@@ -1,7 +1,10 @@
-from .services import GameService
+import services.common as services_common
+from .models import Game
 
 
 def games_processor(request):
-    service = GameService()
-    games = service.get_all(request.LANGUAGE_CODE)
+    """Add all games in each context"""
+    games = services_common.get_all_by_language(
+        Game, request.LANGUAGE_CODE
+    )
     return {'games': games}

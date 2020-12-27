@@ -11,7 +11,7 @@ from langs.models import Language
 
 
 class Game(UUIDModel):
-    """Model of game
+    """Game model
 
     Attributes
     ----------
@@ -84,7 +84,7 @@ class Game(UUIDModel):
 
 
 class GameImage(models.Model):
-    """Model of game's image
+    """Model of game image
 
     Attributes
     ----------

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-19 02:16+0000\n"
+"POT-Creation-Date: 2020-12-27 12:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,7 +49,7 @@ msgstr "описание игры"
 msgid "game video link on youtube"
 msgstr "ссылка на видео об игре на youtube"
 
-#: games/models.py:55 langs/models.py:10 persons/models.py:36
+#: games/models.py:55 langs/models.py:10 persons/models.py:35
 msgid "language"
 msgstr "язык"
 
@@ -77,27 +77,27 @@ msgstr "код языка"
 msgid "languages"
 msgstr "языки"
 
-#: persons/models.py:27
+#: persons/models.py:26
 msgid "person avatar"
 msgstr "аватар"
 
-#: persons/models.py:28
+#: persons/models.py:27
 msgid "person name"
 msgstr "имя"
 
-#: persons/models.py:30
+#: persons/models.py:29
 msgid "person profession"
 msgstr "профессия"
 
-#: persons/models.py:33
+#: persons/models.py:32
 msgid "information about person"
 msgstr "Информация о человеке"
 
-#: persons/models.py:40
+#: persons/models.py:39
 msgid "person"
 msgstr "человек"
 
-#: persons/models.py:41
+#: persons/models.py:40
 msgid "persons"
 msgstr "люди"
 
@@ -112,7 +112,8 @@ msgid "Project"
 msgstr "Проект"
 
 #: templates/404.html:16 templates/500.html:16 templates/cooperation.html:16
-#: templates/game.html:23 templates/news.html:20 templates/project.html:20
+#: templates/cooperation.html:21 templates/game.html:23 templates/news.html:20
+#: templates/project.html:20
 msgid "Cooperation"
 msgstr "Сотрудничество"
 
@@ -132,5 +133,6 @@ msgstr "Игровая студия"
 msgid "Menu"
 msgstr "Меню"
 
-#~ msgid "Game short description"
-#~ msgstr "Краткое описание игры"
+#: templates/cooperation.html:22
+msgid "Some text"
+msgstr "Некоторый текст"

@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 
+import services.common as services_common
 from utils.views import DefaultView
-from .services import PersonService
+from .models import Person
 
 
 class ProjectView(DefaultView):
-
-    """View to return information about project authors
+    """View to render information about project authors
 
     Attributes
     ----------
@@ -20,10 +20,15 @@ class ProjectView(DefaultView):
 
     """
 
-    person_service = PersonService()
+    model = Person
     template_name = 'project.html'
+    context_object_name = 'persons'
 
     def get(self, request: HttpRequest) -> HttpResponse:
         """Render page with persons and games list"""
-        persons = self.person_service.get_all(request.LANGUAGE_CODE)
-        return render(request, self.template_name, {'persons': persons})
+        persons = services_common.get_all_by_language(
+            self.model, request.LANGUAGE_CODE
+        )
+        return render(request, self.template_name, {
+            self.context_object_name: persons,
+        })

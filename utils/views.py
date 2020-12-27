@@ -11,7 +11,6 @@ logger = logging.getLogger('filelogger')
 
 
 class DefaultView(View):
-
     """View with exceptions handling
 
     Methods
