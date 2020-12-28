@@ -26,7 +26,7 @@ class ProjectView(DefaultView):
 
     def get(self, request: HttpRequest) -> HttpResponse:
         """Render page with persons and games list"""
-        persons = services_common.get_all_by_language(
+        persons = services_common.get_all_model_entries_by_language(
             self.model, request.LANGUAGE_CODE
         )
         return render(request, self.template_name, {

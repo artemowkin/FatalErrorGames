@@ -43,12 +43,16 @@ class PersonServicesTests(TestCase):
         )
 
     def test_get_all(self):
-        all_persons = services_common.get_all_by_language(Person)
+        all_persons = services_common.get_all_model_entries_by_language(
+            Person
+        )
         self.assertEqual(len(all_persons), 1)
         self.assertEqual(all_persons[0], self.person)
 
     def test_get_all_ru(self):
-        all_persons = services_common.get_all_by_language(Person, 'ru')
+        all_persons = services_common.get_all_model_entries_by_language(
+            Person, 'ru'
+        )
         self.assertEqual(len(all_persons), 1)
         self.assertEqual(all_persons[0], self.person)
 
@@ -61,37 +65,11 @@ class PersonServicesTests(TestCase):
             about='Описание',
             language=lang_ru,
         )
-        all_persons = services_common.get_all_by_language(
+        all_persons = services_common.get_all_model_entries_by_language(
             Person, lang_ru.code
         )
         self.assertEqual(len(all_persons), 1)
         self.assertEqual(all_persons[0], person_ru)
-
-    def test_get_concrete(self):
-        entry = services_common.get_concrete_by_pk(
-            Person, self.person.pk
-        )
-        self.assertEqual(entry, self.person)
-
-    def test_get_concrete_ru(self):
-        entry = services_common.get_concrete_by_pk(
-            Person, self.person.pk, 'ru'
-        )
-        self.assertEqual(entry, self.person)
-
-    def test_get_concrete_ru_with_person_ru(self):
-        lang_ru = Language.objects.create(code='ru')
-        person_ru = Person.objects.create(
-            avatar='/static/images/cruel_galaxy_discordia_header.jpg',
-            name='Пользователь',
-            profession='Программист',
-            about='Описание',
-            language=lang_ru,
-        )
-        entry = services_common.get_concrete_by_pk(
-            Person, person_ru.pk, lang_ru.code
-        )
-        self.assertEqual(entry, person_ru)
 
 
 class PersonsViewsTests(TestCase):
