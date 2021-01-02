@@ -1,42 +1,27 @@
 import json
 
 from django.shortcuts import render
+from django.http import JsonResponse, Http404
 from django.conf import settings
-from django.http import JsonResponse
-from django.utils.translation import LANGUAGE_SESSION_KEY
+from django.views.decorators.http import require_http_methods
 
-from .models import Language
-
-
-def is_language_code_correct(language_code):
-    all_languages = Language.objects.all().values_list('code', flat=True)
-    return language_code in all_languages
+from . import services
 
 
+@require_http_methods(["POST"])
 def set_language(request):
-    if request.method == 'POST':
-        language = json.loads(request.body).get(
-            'language', settings.LANGUAGE_CODE
-        )
-    else:
-        language = request.GET.get(
-            'language', settings.LANGUAGE_CODE
-        )
+    if not request.content_type == 'application/json':
+        raise Http404
 
-    if not is_language_code_correct(language):
+    language = json.loads(request.body).get(
+        'language', settings.LANGUAGE_CODE
+    )
+    if not services.is_language_code_correct(language):
         language = settings.LANGUAGE_CODE
 
-    response = JsonResponse({'status': 'ok'})
     if request.user.is_authenticated:
-        request.session[LANGUAGE_SESSION_KEY] = language
+        services.set_language_session(request.session, language)
 
-    response.set_cookie(
-        settings.LANGUAGE_COOKIE_NAME, language,
-        max_age=settings.LANGUAGE_COOKIE_AGE,
-        path=settings.LANGUAGE_COOKIE_PATH,
-        domain=settings.LANGUAGE_COOKIE_DOMAIN,
-        secure=settings.LANGUAGE_COOKIE_SECURE,
-        httponly=settings.LANGUAGE_COOKIE_HTTPONLY,
-        samesite=settings.LANGUAGE_COOKIE_SAMESITE,
-    )
+    response = JsonResponse({'status': 'ok'})
+    services.set_response_language_cookie(response, language)
     return response
