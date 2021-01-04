@@ -19,8 +19,8 @@ def get_env(env_name: str, default: Any = None) -> Any[int, str]:
     Raises
     ------
     ImproperlyConfigured
-        Raises if environment variable doesn't exist and default value
-        is `None`
+        Raises if environment variable doesn't exist and `default`
+        is empty
 
     Returns
     -------

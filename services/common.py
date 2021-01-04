@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from django.db.models import Model, QuerySet
-from django.http import Http404
 from django.conf import settings
 
 

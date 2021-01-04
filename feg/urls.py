@@ -18,7 +18,7 @@ urlpatterns = [
     path('games/', include('games.urls')),
 ]
 
-if settings.DEBUG:
+if settings.DEBUG and settings.ENVIRONMENT != 'production':
     urlpatterns += static(
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
     )

@@ -46,7 +46,7 @@ class Game(UUIDModel):
     video = models.URLField(
         _('game video link on youtube'),
         validators=[
-            URLValidator(regex=r"https://(?:www.)?youtube.com/watch.*v=.*",
+            URLValidator(regex=r"https://(?:www\.)?youtube\.com/watch\?v=.*",
                          message="A video link need to be from YouTube")
         ]
     )

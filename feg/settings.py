@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'langs',
 ]
 
-if not DEBUG or ENVIRONMENT == 'heroku':
+if not DEBUG and ENVIRONMENT != 'production':
     INSTALLED_APPS.append('whitenoise')
 
 
@@ -69,7 +69,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-if not DEBUG or ENVIRONMENT == 'heroku':
+if not DEBUG and ENVIRONMENT != 'production':
     MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 
@@ -203,7 +203,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-if not DEBUG or ENVIRONMENT == 'heroku':
+if not DEBUG and ENVIRONMENT != 'production':
     STATICFILES_STORAGE = (
         'whitenoise.storage.CompressedManifestStaticFilesStorage'
     )

@@ -23,6 +23,11 @@ class LanguageServicesTests(TestCase):
         )
         self.client.login(username='testuser', password='testpass')
 
+    def test_get_all_languages(self):
+        all_languages = services.get_all_languages()
+        self.assertEqual(len(all_languages), 1)
+        self.assertEqual(all_languages[0], self.language)
+
     def test_is_language_code_correct(self):
         correct = services.is_language_code_correct('en')
         self.assertTrue(correct)

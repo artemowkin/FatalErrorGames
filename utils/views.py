@@ -22,8 +22,7 @@ class DefaultView(View):
 
     def dispatch(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
         """
-        Try to handle request. Render 404.html if 404 error
-        or 500.html if something went wrong
+        Handle exceptions and log problems
         """
         try:
             return super().dispatch(request, *args, **kwargs)
