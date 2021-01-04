@@ -6,10 +6,8 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import URLValidator
 from tinymce.models import HTMLField
 
-from utils.models import UUIDModel
 
-
-class Game(UUIDModel):
+class Game(models.Model):
     """Game model
 
     Attributes
@@ -35,7 +33,7 @@ class Game(UUIDModel):
 
     """
     title = models.CharField(_('game title'), max_length=255)
-    slug = models.SlugField(_('game slug'))
+    slug = models.SlugField(_('game slug'), unique=True)
     preview = models.ImageField(
         _('game preview'), upload_to='games',
         help_text=_('preferably 1000x225 px')
@@ -58,7 +56,7 @@ class Game(UUIDModel):
     pub_date = models.DateField(auto_now_add=True)
 
     class Meta:
-        ordering = ('pub_date', 'title')
+        ordering = ('-pub_date', 'title')
         verbose_name = _('game')
         verbose_name_plural = _('games')
 

@@ -1,10 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from utils.models import UUIDModel
 
-
-class Person(UUIDModel):
+class Person(models.Model):
     """Person model
 
     Attributes
@@ -45,6 +43,7 @@ class Person(UUIDModel):
     )
 
     class Meta:
+        ordering = ('name',)
         verbose_name = _('person')
         verbose_name_plural = _('persons')
 

@@ -1,7 +1,6 @@
 from django.utils.translation import LANGUAGE_SESSION_KEY
 from django.conf import settings
 from django.http import HttpResponse
-from django.db.models import QuerySet
 
 
 def set_language_session(session, language: str) -> None:
