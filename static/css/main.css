@@ -355,6 +355,7 @@ a.menu_link:hover {
 
 .person_avatar {
     width: 100%;
+    min-height: 100%;
 }
 
 .person h3 {

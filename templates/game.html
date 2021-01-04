@@ -32,7 +32,12 @@
             </div>
 
             <p class="game_short_description">
-                {{ game.short_description }}
+                {% get_current_language as LANGUAGE_CODE %}
+                {% if LANGUAGE_CODE == 'ru' and game.short_description_ru %}
+                    {{ game.short_description_ru }}
+                {% else %}
+                    {{ game.short_description }}
+                {% endif %}
             </p>
 
             <div class="owl-carousel">
@@ -43,7 +48,11 @@
             </div>
 
             <div class="game_description">
-                {{ game.description|safe }}
+                {% if LANGUAGE_CODE == 'ru' and game.description_ru %}
+                    {{ game.description_ru|safe }}
+                {% else %}
+                    {{ game.description|safe }}
+                {% endif %}
             </div>
         </div>
     </div>

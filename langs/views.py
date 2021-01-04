@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http import JsonResponse, Http404
 from django.conf import settings
 from django.views.decorators.http import require_http_methods
+from django.utils.translation import check_for_language
 
 from . import services
 
@@ -16,7 +17,7 @@ def set_language(request):
     language = json.loads(request.body).get(
         'language', settings.LANGUAGE_CODE
     )
-    if not services.is_language_code_correct(language):
+    if not check_for_language(language):
         language = settings.LANGUAGE_CODE
 
     if request.user.is_authenticated:

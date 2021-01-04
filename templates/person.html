@@ -1,8 +1,29 @@
+{% load i18n %}
+
 <div class="person">
     <div class="person_avatar_wrapper">
         <img class="person_avatar" src="{{ person.avatar.url }}"></img>
     </div>
-    <h3>{{ person.name }}</h3>
-    <small>{{ person.profession }}</small>
-    <p>{{ person.about }}</p>
+    {% get_current_language as LANGUAGE_CODE %}
+    {% if LANGUAGE_CODE == 'ru' %}
+        {% if person.name_ru %}
+            <h3>{{ person.name_ru }}</h3>
+        {% else %}
+            <h3>{{ person.name }}</h3>
+        {% endif %}
+        {% if person.profession_ru %}
+            <small>{{ person.profession_ru }}</small>
+        {% else %}
+            <small>{{ person.profession }}</small>
+        {% endif %}
+        {% if person.about_ru %}
+            <p>{{ person.about_ru }}</p>
+        {% else %}
+            <p>{{ person.about }}</p>
+        {% endif %}
+    {% else %}
+        <h3>{{ person.name }}</h3>
+        <small>{{ person.profession }}</small>
+        <p>{{ person.about }}</p>
+    {% endif %}
 </div>

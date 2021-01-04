@@ -2,7 +2,6 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from utils.models import UUIDModel
-from langs.models import Language
 
 
 class Person(UUIDModel):
@@ -13,26 +12,36 @@ class Person(UUIDModel):
     avatar : ImageField
         Person avatar
     name : CharField
-        Person name
+        Person name in English
+    name_ru : CharField
+        Person name in Russian
     profession : CharField
-        Person profession
+        Person profession in English
+    profession_ru : CharField
+        Person profession in Russian
     about : CharField
-        Information about person
-    language : ForeignKey
-        Language of person
+        Information about person in English
+    about_ru : CharField
+        Information about person in Russian
 
     """
 
     avatar = models.ImageField(_('person avatar'), upload_to='persons')
-    name = models.CharField(_('person name'), max_length=255)
+    name = models.CharField(_('person name in English'), max_length=255)
+    name_ru = models.CharField(
+        _('person name in Russian'), max_length=255, blank=True
+    )
     profession = models.CharField(
-        _('person profession'), max_length=255
+        _('person profession in English'), max_length=255
+    )
+    profession_ru = models.CharField(
+        _('person profession in Russian'), max_length=255, blank=True
     )
     about = models.CharField(
-        _('information about person'), max_length=1000
+        _('information about person in English'), max_length=1000
     )
-    language = models.ForeignKey(
-        Language, on_delete=models.CASCADE, verbose_name=_('language')
+    about_ru = models.CharField(
+        _('information about person in Russian'), max_length=1000, blank=True
     )
 
     class Meta:

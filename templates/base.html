@@ -24,14 +24,13 @@
                 <div class="languages">
                     {% get_current_language as current_lang %}
                     {% csrf_token %}
-
-                    {% for lang in languages %}
-                        {% if lang.code == current_lang|truncatechars:2 %}
-                            <span class="language active_language">{{ lang.code }}</span>
-                        {% else %}
-                            <a href="#" class="language">{{ lang.code }}</a>
-                        {% endif %}
-                    {% endfor %}
+                    {% if current_lang|truncatechars:2 == 'en' %}
+                        <span class="language active_language">en</span>
+                        <a href="#" class="language">ru</a>
+                    {% else %}
+                        <a href="#" class="language">en</a>
+                        <span class="language active_language">ru</span>
+                    {% endif %}
 
                     <script>
                         let langButtons = document.querySelectorAll('a.language');

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-27 12:29+0000\n"
+"POT-Creation-Date: 2021-01-04 12:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,83 +21,91 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: games/models.py:36
+#: games/models.py:39
 msgid "game title"
-msgstr "заголовок игры"
+msgstr "название игры"
 
-#: games/models.py:37
+#: games/models.py:40
 msgid "game slug"
 msgstr "слаг игры"
 
-#: games/models.py:39
+#: games/models.py:42
 msgid "game preview"
 msgstr "preview игры"
 
-#: games/models.py:40
+#: games/models.py:43
 msgid "preferably 1000x225 px"
 msgstr "предпочтительно 1000x225 px"
 
-#: games/models.py:43
-msgid "game short description"
-msgstr "краткое описание игры"
+#: games/models.py:46
+msgid "game short description in English"
+msgstr "краткое описание игры на английском"
 
-#: games/models.py:45
-msgid "game description"
-msgstr "описание игры"
+#: games/models.py:49
+msgid "game short description in Russian"
+msgstr "краткое описание игры на русском"
 
-#: games/models.py:47
+#: games/models.py:51
+msgid "game description in English"
+msgstr "описание игры на английском"
+
+#: games/models.py:52
+msgid "game description in Russian"
+msgstr "описание игры на русском"
+
+#: games/models.py:54
 msgid "game video link on youtube"
 msgstr "ссылка на видео об игре на youtube"
 
-#: games/models.py:55 langs/models.py:10 persons/models.py:35
-msgid "language"
-msgstr "язык"
-
-#: games/models.py:65 games/models.py:100
+#: games/models.py:64 games/models.py:99
 msgid "game"
 msgstr "игра"
 
-#: games/models.py:66
+#: games/models.py:65
 msgid "games"
 msgstr "игры"
 
-#: games/models.py:97 games/models.py:104
+#: games/models.py:96 games/models.py:103
 msgid "game image"
 msgstr "картинка игры"
 
-#: games/models.py:105
+#: games/models.py:104
 msgid "game images"
 msgstr "картинки игры"
 
-#: langs/models.py:7
-msgid "language code"
-msgstr "код языка"
-
-#: langs/models.py:11
-msgid "languages"
-msgstr "языки"
-
-#: persons/models.py:26
-msgid "person avatar"
-msgstr "аватар"
-
-#: persons/models.py:27
-msgid "person name"
-msgstr "имя"
-
 #: persons/models.py:29
-msgid "person profession"
-msgstr "профессия"
+msgid "person avatar"
+msgstr "аватар человека"
+
+#: persons/models.py:30
+msgid "person name in English"
+msgstr "имя человека на английском"
 
 #: persons/models.py:32
-msgid "information about person"
-msgstr "Информация о человеке"
+msgid "person name in Russian"
+msgstr "имя человека на русском"
 
-#: persons/models.py:39
+#: persons/models.py:35
+msgid "person profession in English"
+msgstr "профессия человека на английском"
+
+#: persons/models.py:38
+msgid "person profession in Russian"
+msgstr "профессия человека на русском"
+
+#: persons/models.py:41
+msgid "information about person in English"
+msgstr "информация о человеке на английском"
+
+#: persons/models.py:44
+msgid "information about person in Russian"
+msgstr "информация о человеке на русском"
+
+#: persons/models.py:48
 msgid "person"
 msgstr "человек"
 
-#: persons/models.py:40
+#: persons/models.py:49
 msgid "persons"
 msgstr "люди"
 
@@ -129,7 +137,7 @@ msgstr "Что-то пошло не так"
 msgid "Game study"
 msgstr "Игровая студия"
 
-#: templates/base.html:61
+#: templates/base.html:60
 msgid "Menu"
 msgstr "Меню"
 

@@ -12,9 +12,7 @@ class GameView(DefaultView):
     context_object_name = 'game'
 
     def get(self, request: HttpRequest, slug: str) -> HttpResponse:
-        game = services.get_concrete_game_by_slug(
-            slug, request.LANGUAGE_CODE
-        )
+        game = services.get_concrete_game_by_slug(slug)
         return render(request, self.template_name, {
             self.context_object_name: game,
         })

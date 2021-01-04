@@ -3,20 +3,6 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.db.models import QuerySet
 
-from .models import Language
-
-
-def get_all_languages() -> QuerySet:
-    """Return all languages entries"""
-    return Language.objects.all()
-
-
-def is_language_code_correct(language_code: str) -> bool:
-    """Check is language code in `Language` model entries"""
-    all_languages = get_all_languages()
-    languages_codes = all_languages.values_list('code', flat=True)
-    return language_code in languages_codes
-
 
 def set_language_session(session, language: str) -> None:
     """Set language session key for session"""

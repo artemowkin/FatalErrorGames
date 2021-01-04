@@ -15,9 +15,7 @@ class ProjectView(DefaultView):
 
     def get(self, request: HttpRequest) -> HttpResponse:
         """Render page with all persons"""
-        all_persons = services_common.get_all_model_entries_by_language(
-            self.model, request.LANGUAGE_CODE
-        )
+        all_persons = services_common.get_all_model_entries(self.model)
         return render(request, self.template_name, {
             self.context_object_name: all_persons,
         })

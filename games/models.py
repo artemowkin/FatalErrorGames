@@ -7,7 +7,6 @@ from django.core.validators import URLValidator
 from tinymce.models import HTMLField
 
 from utils.models import UUIDModel
-from langs.models import Language
 
 
 class Game(UUIDModel):
@@ -22,15 +21,17 @@ class Game(UUIDModel):
     preview : ImageField
         Game preview image
     short_description : CharField
-        Game short description
+        Game short description in English
+    short_description_ru : CharField
+        Game short description in Russian
     description : HTMLField
-        Game description
+        Game description in English
+    description_ru : HTMLField
+        Game description in Russian
     video : URLField
         Game video YouTube link
     pub_date : DateField
         Date published
-    language : ForeignKey
-        Language of game entry
 
     """
     title = models.CharField(_('game title'), max_length=255)
@@ -40,9 +41,13 @@ class Game(UUIDModel):
         help_text=_('preferably 1000x225 px')
     )
     short_description = models.CharField(
-        _('game short description'), max_length=1000
+        _('game short description in English'), max_length=1000
     )
-    description = HTMLField(_('game description'))
+    short_description_ru = models.CharField(
+        _('game short description in Russian'), max_length=1000, blank=True
+    )
+    description = HTMLField(_('game description in English'))
+    description_ru = HTMLField(_('game description in Russian'), blank=True)
     video = models.URLField(
         _('game video link on youtube'),
         validators=[
@@ -51,16 +56,8 @@ class Game(UUIDModel):
         ]
     )
     pub_date = models.DateField(auto_now_add=True)
-    language = models.ForeignKey(
-        Language, on_delete=models.CASCADE, verbose_name=_('language')
-    )
 
     class Meta:
-        constraints = (
-            models.UniqueConstraint(
-                fields=['slug', 'language'], name='unique_games'
-            ),
-        )
         ordering = ('pub_date', 'title')
         verbose_name = _('game')
         verbose_name_plural = _('games')

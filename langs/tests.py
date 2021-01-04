@@ -8,7 +8,6 @@ from django.conf import settings
 from django.urls import reverse
 
 from . import services
-from .models import Language
 
 
 User = get_user_model()
@@ -17,22 +16,10 @@ User = get_user_model()
 class LanguageServicesTests(TestCase):
 
     def setUp(self):
-        self.language = Language.objects.create(code='en')
         User.objects.create_superuser(
             username='testuser', password='testpass'
         )
         self.client.login(username='testuser', password='testpass')
-
-    def test_get_all_languages(self):
-        all_languages = services.get_all_languages()
-        self.assertEqual(len(all_languages), 1)
-        self.assertEqual(all_languages[0], self.language)
-
-    def test_is_language_code_correct(self):
-        correct = services.is_language_code_correct('en')
-        self.assertTrue(correct)
-        incorrect = services.is_language_code_correct('ru')
-        self.assertFalse(incorrect)
 
     def test_set_language_session(self):
         session = self.client.session
@@ -49,9 +36,6 @@ class LanguageServicesTests(TestCase):
 
 
 class LanguageViewsTests(TestCase):
-
-    def setUp(self):
-        self.language = Language.objects.create(code='en')
 
     def test_setlang(self):
         response = self.client.post(
