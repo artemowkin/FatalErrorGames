@@ -2,8 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.conf import settings
 
-import services.common as services_common
-from . import services
+from .services import GameService
 from .models import Game, GameImage
 
 
@@ -49,7 +48,7 @@ class GameModelTests(TestCase):
         )
 
 
-class GameServicesTests(TestCase):
+class GameServiceTests(TestCase):
 
     def setUp(self):
         self.game = Game.objects.create(
@@ -62,14 +61,15 @@ class GameServicesTests(TestCase):
             description_ru='тестовое описание',
             video="https://www.youtube.com/watch?v=test",
         )
+        self.service = GameService()
 
-    def test_get_all_model_entries(self):
-        all_games = services_common.get_all_model_entries(Game)
+    def test_get_all(self):
+        all_games = self.service.get_all()
         self.assertEqual(len(all_games), 1)
         self.assertEqual(all_games[0], self.game)
 
-    def test_get_concrete_game_by_slug(self):
-        game = services.get_concrete_game_by_slug(self.game.slug)
+    def test_get_concrete(self):
+        game = self.service.get_concrete(self.game.slug)
         self.assertEqual(game, self.game)
 
 

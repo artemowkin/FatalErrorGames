@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.conf import settings
 
 from .models import Person
-import services.common as services_common
+from .services import PersonService
 
 
 class PersonModelTests(TestCase):
@@ -32,7 +32,7 @@ class PersonModelTests(TestCase):
         self.assertEqual(self.person.about_ru, 'описание')
 
 
-class PersonServicesTests(TestCase):
+class PersonServiceTests(TestCase):
 
     def setUp(self):
         self.person = Person.objects.create(
@@ -44,9 +44,10 @@ class PersonServicesTests(TestCase):
             about='description',
             about_ru='описание'
         )
+        self.service = PersonService()
 
     def test_get_all_model_entries(self):
-        all_persons = services_common.get_all_model_entries(Person)
+        all_persons = self.service.get_all()
         self.assertEqual(len(all_persons), 1)
         self.assertEqual(all_persons[0], self.person)
 

@@ -1,8 +1,9 @@
-import services.common as services_common
+from .services import GameService
 from .models import Game
 
 
 def games_processor(request):
     """Add all games in each context"""
-    all_games = services_common.get_all_model_entries(Game)
+    game_service = GameService()
+    all_games = game_service.get_all()
     return {'games': all_games}

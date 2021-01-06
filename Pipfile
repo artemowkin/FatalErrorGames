@@ -14,7 +14,7 @@ django-tinymce4-lite = "*"
 dj-database-url = "*"
 whitenoise = "*"
 gunicorn = "*"
-dj-services = "*"
+dj-services = "==2.0.0"
 
 [requires]
 python_version = "3.8"

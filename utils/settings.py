@@ -1,11 +1,12 @@
 from __future__ import annotations
-from typing import Any
+
+from typing import Union
 import os
 
 from django.core.exceptions import ImproperlyConfigured
 
 
-def get_env(env_name: str, default: Any = None) -> Any[int, str]:
+def get_env(env_name: str, default: Any = None) -> Union[int, str]:
     """Returns environment variable value
 
     Parameters
