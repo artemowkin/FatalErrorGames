@@ -15,6 +15,7 @@ dj-database-url = "*"
 whitenoise = "*"
 gunicorn = "*"
 simplejson = "*"
+selenium = "*"
 
 [requires]
 python_version = "3.8"
