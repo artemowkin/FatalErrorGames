@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 
-from .services import GameService
+from .services import GamesGetService
 from utils.views import DefaultView
 
 
@@ -10,7 +10,7 @@ class GameView(DefaultView):
 
     template_name = 'game.html'
     context_object_name = 'game'
-    service = GameService()
+    service = GamesGetService()
 
     def get(self, request: HttpRequest, slug: str) -> HttpResponse:
         game = self.service.get_concrete(slug)

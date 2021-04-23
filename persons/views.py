@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 
 from utils.views import DefaultView
-from .services import PersonService
+from .services import PersonsGetService
 
 
 class ProjectView(DefaultView):
@@ -10,7 +10,7 @@ class ProjectView(DefaultView):
 
     template_name = 'project.html'
     context_object_name = 'persons'
-    service = PersonService()
+    service = PersonsGetService()
 
     def get(self, request: HttpRequest) -> HttpResponse:
         """Render page with all persons"""

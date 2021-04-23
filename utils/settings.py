@@ -7,29 +7,8 @@ from django.core.exceptions import ImproperlyConfigured
 
 
 def get_env(env_name: str, default: Any = None) -> Union[int, str]:
-    """Returns environment variable value
+    """Returns environment variable value"""
 
-    Parameters
-    ----------
-    env_name : str
-        Environment variable name
-    default
-        Default environment variable value. If variable doesn't exist
-        returns this value. By default `None`
-
-    Raises
-    ------
-    ImproperlyConfigured
-        Raises if environment variable doesn't exist and `default`
-        is empty
-
-    Returns
-    -------
-    env_value : Any[str, int]
-        Environment variable value. If this value contains only digits
-        returns integer else string
-
-    """
     env_value = os.getenv(env_name, default)
     if not env_value:
         raise ImproperlyConfigured(

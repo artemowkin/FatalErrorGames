@@ -3,26 +3,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Person(models.Model):
-    """Person model
-
-    Attributes
-    ----------
-    avatar : ImageField
-        Person avatar
-    name : CharField
-        Person name in English
-    name_ru : CharField
-        Person name in Russian
-    profession : CharField
-        Person profession in English
-    profession_ru : CharField
-        Person profession in Russian
-    about : CharField
-        Information about person in English
-    about_ru : CharField
-        Information about person in Russian
-
-    """
+    """Person model"""
 
     avatar = models.ImageField(_('person avatar'), upload_to='persons')
     name = models.CharField(_('person name in English'), max_length=255)

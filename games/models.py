@@ -8,30 +8,8 @@ from tinymce.models import HTMLField
 
 
 class Game(models.Model):
-    """Game model
+    """Game model"""
 
-    Attributes
-    ----------
-    title : CharField
-        Game title
-    slug: SlugField
-        Game slug
-    preview : ImageField
-        Game preview image
-    short_description : CharField
-        Game short description in English
-    short_description_ru : CharField
-        Game short description in Russian
-    description : HTMLField
-        Game description in English
-    description_ru : HTMLField
-        Game description in Russian
-    video : URLField
-        Game video YouTube link
-    pub_date : DateField
-        Date published
-
-    """
     title = models.CharField(_('game title'), max_length=255)
     slug = models.SlugField(_('game slug'), unique=True)
     preview = models.ImageField(
@@ -79,16 +57,8 @@ class Game(models.Model):
 
 
 class GameImage(models.Model):
-    """Model of game image
+    """Model of game image"""
 
-    Attributes
-    ----------
-    image : ImageField
-        Game image
-    game : ForeignKey[Game]
-        Foreign key to Game
-
-    """
     image = models.ImageField(_('game image'), upload_to='games')
     game = models.ForeignKey(
         Game, on_delete=models.CASCADE, related_name='images',

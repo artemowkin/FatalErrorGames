@@ -1,11 +1,11 @@
 from django.test import TestCase
 
 from ..models import Game
-from ..services import GameService
+from ..services import GamesGetService
 
 
-class GameServiceTests(TestCase):
-    """Case of testing game service"""
+class GamesGetServiceTests(TestCase):
+    """Case of testing games get service"""
 
     def setUp(self):
         self.game = Game.objects.create(
@@ -18,7 +18,7 @@ class GameServiceTests(TestCase):
             description_ru='тестовое описание',
             video="https://www.youtube.com/watch?v=test",
         )
-        self.service = GameService()
+        self.service = GamesGetService()
 
     def test_get_all_returns_all_games(self):
         """Test: does service get_all method return all games"""
