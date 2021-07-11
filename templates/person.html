@@ -1,8 +1,9 @@
+{% load static %}
 {% load i18n %}
 
 <div class="person">
     <div class="person_avatar_wrapper">
-        <img class="person_avatar" src="{{ person.avatar.url }}"></img>
+        <img class="person_avatar" src="{% static 'images/person.jpg' %}"></img>
     </div>
     {% get_current_language as LANGUAGE_CODE %}
     {% if LANGUAGE_CODE == 'ru' %}

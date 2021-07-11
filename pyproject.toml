@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "fatalerrorgames"
+version = "1.0.0"
+description = "Fatal Error Games is an indie game development company"
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Django = "^3.2.5"
+psycopg2-binary = "^2.9.1"
+Pillow = "^8.3.1"
+django-tinymce4-lite = "^1.8.0"
+dj-database-url = "^0.5.0"
+whitenoise = "^5.2.0"
+gunicorn = "^20.1.0"
+simplejson = "^3.17.3"
+selenium = "^3.141.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

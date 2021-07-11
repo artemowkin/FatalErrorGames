@@ -27,7 +27,7 @@
     <div class="game">
         <div class="wrapper">
             <div class="game_preview">
-                <img src="{{ game.preview.url }}">
+                <img src="{% static 'images/cruel_galaxy_discordia_header.jpg' %}">
                 <div class="game_title">{{ game.title }}</div>
             </div>
 
@@ -42,9 +42,9 @@
 
             <div class="owl-carousel">
                 <iframe src="{{ game.video_widget_url }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                {% for image in game.images.all %}
-                    <img src="{{ image.image.url }}">
-                {% endfor %}
+                <img src="{% static 'images/dota2.png' %}">
+                <img src="{% static 'images/slider1.jpg' %}">
+                <img src="{% static 'images/slider2.jpg' %}">
             </div>
 
             <div class="game_description">
